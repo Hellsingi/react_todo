@@ -10,7 +10,7 @@ const myGame = new Game();
 
 
 const heading = document.createElement('h1');
-heading.textContent = 'How are you?';
+heading.textContent = 'How are you TOday?';
 
 const root = document.querySelector('#root');
-root.appent(heading);
+root.append(heading);
