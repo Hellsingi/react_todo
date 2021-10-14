@@ -1,17 +1,18 @@
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { Typography } from '@material-ui/core';
 import './styles/main.css';
+import TodoForm from './TodoForm';
 
-console.log('Start Project with webpack!');
+const App = () => (
+  // eslint-disable-next-line react/jsx-filename-extension
+  <div className="App">
+    <Typography component="h1" variant="h2">
+      Todos
+    </Typography>
+    <TodoForm saveTodo={console.log} />
+  </div>
+);
 
-class Game {
-  name = 'Violin Charades';
-}
-
-const myGame = new Game();
-
-console.log('myGame:', myGame);
-
-const heading = document.createElement('h1');
-heading.textContent = 'How are you TOday?';
-
-const root = document.querySelector('#root');
-root.append(heading);
+const rootElement = document.querySelector('#root');
+ReactDOM.render(<App />, rootElement);
