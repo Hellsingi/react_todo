@@ -15,7 +15,7 @@ const babelLoader = {
 };
 
 module.exports = {
-  entry: [`${paths.src}/index.js`],
+  entry: [`${paths.src}/index.tsx`],
   output: {
     path: paths.build,
     filename: '[name].bundle.js',

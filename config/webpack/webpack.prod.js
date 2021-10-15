@@ -17,7 +17,7 @@ module.exports = merge(common, {
   },
   entry: {
     index: {
-      import: `${paths.src}/index.js`,
+      import: `${paths.src}/index.tsx`,
       dependOn: ['react', 'helpers'],
     },
     react: ['react', 'react-dom', 'prop-types'],

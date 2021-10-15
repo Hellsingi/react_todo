@@ -14,7 +14,7 @@ const App = () => {
         Todos
       </Typography>
       <TodoForm
-        saveTodo={(todoText) => {
+        saveTodo={(todoText: string) => {
           const trimmedText = todoText.trim();
           if (trimmedText.length > 0) {
             addTodo(trimmedText);

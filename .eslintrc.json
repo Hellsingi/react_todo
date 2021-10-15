@@ -24,6 +24,15 @@
   "rules": {
     "no-console": "off",
     "@typescript-eslint/no-var-requires": 0,
-    "no-use-before-define": "off"
+    "no-use-before-define": "off",
+    "react/jsx-filename-extension": [
+      1,
+      {
+        "extensions": [
+          ".tsx",
+          ".ts"
+        ]
+      }
+    ]
   }
 }
