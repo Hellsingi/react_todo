@@ -1,13 +1,15 @@
-/* eslint-disable react/jsx-filename-extension */
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Typography } from '@material-ui/core';
-import TodoForm from './TodoForm';
-import TodoList from './TodoList';
-import useTodoState from './useTodoState';
+import TodoForm from './components/TodoForm';
+import useTodoState from './components/useTodoState';
+import TodoList from './components/TodoList';
+import './styles/main.css';
 
 const App = () => {
-  const { todos, addTodo, deleteTodo } = useTodoState([]);
+  const {
+    todos, addTodo, editTodo, deleteTodo,
+  } = useTodoState([]);
   return (
     <div className="App">
       <Typography component="h1" variant="h2">
@@ -21,7 +23,7 @@ const App = () => {
           }
         }}
       />
-      <TodoList todos={todos} deleteTodo={deleteTodo} />
+      <TodoList todos={todos} editTodo={editTodo} deleteTodo={deleteTodo} />
     </div>
   );
 };

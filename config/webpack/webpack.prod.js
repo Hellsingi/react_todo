@@ -17,7 +17,7 @@ module.exports = merge(common, {
   },
   entry: {
     index: {
-      import: `${paths.src}/index.tsx`,
+      import: `${paths.src}/App.tsx`,
       dependOn: ['react', 'helpers'],
     },
     react: ['react', 'react-dom', 'prop-types'],
@@ -26,26 +26,14 @@ module.exports = merge(common, {
   module: {
     rules: [
       {
-        test: /\.(c|sa|sc)ss$/i,
-        use: [
-          MiniCssExtractPlugin.loader,
-          {
-            loader: 'css-loader',
-            options: {
-              importLoaders: 1,
-              sourceMap: false,
-              modules: true,
-            },
-          },
-          'sass-loader',
-          'postcss-loader',
-        ],
+        test: /\.(sc|c)ss$/,
+        use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
       },
     ],
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: 'css/[name].[contenthash].css',
+      filename: '[name].css',
       chunkFilename: '[id].css',
     }),
 
