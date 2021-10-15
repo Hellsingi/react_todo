@@ -1,5 +1,5 @@
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const ImageminPlugin = require('imagemin-webpack-plugin').default;
 
 const { merge } = require('webpack-merge');
@@ -18,10 +18,10 @@ module.exports = merge(common, {
   entry: {
     index: {
       import: `${paths.src}/index.js`,
-      dependOn: ['react', 'helpers']
+      dependOn: ['react', 'helpers'],
     },
     react: ['react', 'react-dom', 'prop-types'],
-    helpers: ['immer', 'nanoid']
+    helpers: ['immer', 'nanoid'],
   },
   module: {
     rules: [
@@ -35,23 +35,23 @@ module.exports = merge(common, {
               importLoaders: 1,
               sourceMap: false,
               modules: true,
-            }
+            },
           },
           'sass-loader',
           'postcss-loader',
-        ]
-      }
-    ]
+        ],
+      },
+    ],
   },
   plugins: [
     new MiniCssExtractPlugin({
       filename: 'css/[name].[contenthash].css',
-      chunkFilename: '[id].css'
+      chunkFilename: '[id].css',
     }),
 
     new ImageminPlugin({
-      test: /\.(jpe?g|png|gif|svg)$/i
-    })
+      test: /\.(jpe?g|png|gif|svg)$/i,
+    }),
   ],
   optimization: {
     minimize: true,
@@ -63,7 +63,6 @@ module.exports = merge(common, {
   performance: {
     hints: 'warning',
     maxEntrypointSize: 512000,
-    maxAssetSize: 512000
-  }
+    maxAssetSize: 512000,
+  },
 });
-

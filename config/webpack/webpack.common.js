@@ -10,12 +10,12 @@ const babelLoader = {
   loader: 'babel-loader',
   options: {
     presets: ['@babel/preset-env', '@babel/preset-react'],
-    plugins: ['@babel/plugin-proposal-class-properties']
-  }
-}
+    plugins: ['@babel/plugin-proposal-class-properties'],
+  },
+};
 
 module.exports = {
-  entry: [paths.src + '/index.js'],
+  entry: [`${paths.src}/index.js`],
   output: {
     path: paths.build,
     filename: '[name].bundle.js',
@@ -27,14 +27,14 @@ module.exports = {
     new CopyWebpackPlugin({
       patterns: [
         {
-          from: `${paths.public}/assets`
-        }
-      ]
+          from: `${paths.public}/assets`,
+        },
+      ],
     }),
 
     new HtmlWebpackPlugin({
       title: 'webpack setting',
-      template: paths.src + '/template.html',
+      template: `${paths.src}/template.html`,
       filename: 'index.html',
     }),
 
@@ -44,7 +44,7 @@ module.exports = {
     }),
 
     new webpack.ProvidePlugin({
-      React: 'react'
+      React: 'react',
     }),
   ],
   resolve: {
@@ -60,13 +60,13 @@ module.exports = {
       {
         test: /\.m?jsx?$/i,
         exclude: /node_modules/,
-        use: babelLoader
+        use: babelLoader,
       },
 
       {
         test: /.tsx?$/i,
         exclude: /node_modules/,
-        use: [babelLoader, 'ts-loader']
+        use: [babelLoader, 'ts-loader'],
       },
 
       {
@@ -75,21 +75,21 @@ module.exports = {
           'style-loader',
           {
             loader: 'css-loader',
-            options: { importLoaders: 1 }
+            options: { importLoaders: 1 },
           },
-          'sass-loader'
-        ]
+          'sass-loader',
+        ],
       },
 
       {
         test: /\.(jpe?g|png|gif|svg|eot|ttf|woff2?)$/i,
-        type: 'asset'
+        type: 'asset',
       },
     ],
   },
 
   experiments: {
     topLevelAwait: true,
-    outputModule: true
+    outputModule: true,
   },
-}
+};
