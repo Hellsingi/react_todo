@@ -4,7 +4,6 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import ListItemText from '@material-ui/core/ListItemText';
-import Checkbox from '@material-ui/core/Checkbox';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
@@ -21,46 +20,48 @@ const TodoList = ({ todos, changeEditMode, deleteTodo, editTodo }: {
 
   return (
     <List>
-      {todos.map((todo, index) => (
-        <ListItem key={index.toString()} dense button>
-          <Checkbox tabIndex={-1} disableRipple />
-          <ListItemText primary={todo.text} />
-          {todo.editable && (
-          <form
-            onSubmit={(event) => {
-              event.preventDefault();
-              editTodo(todo.id, textFieldRef.current.value || '');
-            }}
-          >
-            <TextField
-              variant="outlined"
-              placeholder="Add task"
-              margin="normal"
-              // onChange={onChange}
-              defaultValue={todo.text}
-              inputRef={textFieldRef}
-            />
-          </form>
-          )}
-          <ListItemSecondaryAction>
-            <IconButton
-              aria-label="Edit"
-              onClick={() => {
-                changeEditMode(todo.id);
-              }}
-            >
-              <EditIcon />
-            </IconButton>
-            <IconButton
-              aria-label="Delete"
-              onClick={() => {
-                deleteTodo(todo.id);
-              }}
-            >
-              <DeleteIcon />
-            </IconButton>
-          </ListItemSecondaryAction>
-        </ListItem>
+      {todos.map((todo) => (
+        <div key={todo.id}>
+
+          <ListItem dense button>
+            <ListItemText primary={todo.text} />
+            {todo.editable && (
+              <form
+                onSubmit={(event) => {
+                  event.preventDefault();
+                  editTodo(todo.id, textFieldRef.current.value);
+                }}
+              >
+                <TextField
+                  variant="outlined"
+                  placeholder="Add task"
+                  margin="normal"
+                  // onChange={onChange}
+                  defaultValue={todo.text}
+                  inputRef={textFieldRef}
+                />
+              </form>
+            )}
+            <ListItemSecondaryAction>
+              <IconButton
+                aria-label="Edit"
+                onClick={() => {
+                  changeEditMode(todo.id);
+                }}
+              >
+                <EditIcon />
+              </IconButton>
+              <IconButton
+                aria-label="Delete"
+                onClick={() => {
+                  deleteTodo(todo.id);
+                }}
+              >
+                <DeleteIcon />
+              </IconButton>
+            </ListItemSecondaryAction>
+          </ListItem>
+        </div>
       ))}
     </List>
   );

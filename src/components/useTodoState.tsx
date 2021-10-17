@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import TextField from '@material-ui/core/TextField';
 import { nanoid } from 'nanoid';
 import { setLocalStorage } from '../utils/localStoge';
 import { Todo } from '../types/todo';
+import { sortByTime } from '../utils/sortTodo';
 
-export default (initialValue: any) => {
+export default (initialValue: Todo[]) => {
   const [todos, setTodos] = useState<Todo[]>(initialValue);
   useEffect(() => {
     setLocalStorage(todos);
@@ -12,8 +12,10 @@ export default (initialValue: any) => {
   return {
     todos,
     addTodo: (todoText: string) => {
-      const newTodo: Todo = { id: nanoid(), text: todoText, date: Date.now(), editable: false }
-      setTodos([...todos, newTodo]);
+      const newTodo: Todo = {
+        id: nanoid(), text: todoText, date: Date.now(), editable: false,
+      };
+      setTodos([newTodo, ...todos]);
     },
     deleteTodo: (id: string) => {
       const newTodos = todos.filter((todo) => todo.id !== id);
@@ -27,6 +29,7 @@ export default (initialValue: any) => {
         }
         return todo;
       });
+
       setTodos(editsTodo);
     },
     editTodo: (id: string, todoText: string | undefined) => {
@@ -38,11 +41,8 @@ export default (initialValue: any) => {
         }
         return todo;
       });
-      setTodos(editsTodo);
+      setTodos(sortByTime(editsTodo));
     },
 
   }
-  // checkTodo:(index: string) => {
-
-  // }
 };
