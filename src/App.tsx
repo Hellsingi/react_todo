@@ -5,11 +5,14 @@ import TodoForm from './components/TodoForm';
 import useTodoState from './components/useTodoState';
 import TodoList from './components/TodoList';
 import './styles/main.css';
+import { getLocalStorage } from './utils/localStoge';
+
+const initialStorage = getLocalStorage();
 
 const App = () => {
   const {
-    todos, addTodo, editTodo, deleteTodo,
-  } = useTodoState([]);
+    todos, addTodo, changeEditMode, deleteTodo, editTodo,
+  } = useTodoState(initialStorage);
   return (
     <div className="App">
       <Typography component="h1" variant="h2">
@@ -23,7 +26,12 @@ const App = () => {
           }
         }}
       />
-      <TodoList todos={todos} editTodo={editTodo} deleteTodo={deleteTodo} />
+      <TodoList
+        todos={todos}
+        changeEditMode={changeEditMode}
+        deleteTodo={deleteTodo}
+        editTodo={editTodo}
+      />
     </div>
   );
 };
