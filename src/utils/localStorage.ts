@@ -6,4 +6,7 @@ export const setLocalStorage = (todos: Todo[]) => {
   localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(todos));
 };
 
-export const getLocalStorage = () => JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY)) || [];
+export const getLocalStorage = ():Todo[] => {
+  const arrTodos = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY)) || [];
+  return arrTodos;
+};
