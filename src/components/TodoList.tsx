@@ -36,7 +36,7 @@ const TodoList = ({
               >
                 <TextField
                   variant="outlined"
-                  placeholder="Add task"
+                  placeholder="Edit task"
                   margin="normal"
                   defaultValue={todo.text}
                   inputRef={textFieldRef}
