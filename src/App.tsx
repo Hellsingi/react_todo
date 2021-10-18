@@ -5,7 +5,7 @@ import TodoForm from './components/TodoForm';
 import useTodoState from './components/useTodoState';
 import TodoList from './components/TodoList';
 import './styles/main.css';
-import { getLocalStorage } from './utils/localStoge';
+import { getLocalStorage } from './utils/localStorage';
 
 const initialStorage = getLocalStorage();
 

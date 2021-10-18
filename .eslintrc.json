@@ -30,6 +30,8 @@
   ],
   "rules": {
     "no-console": "off",
+    "import/prefer-default-export": "off",
+    "no-param-reassign": 0,
     "@typescript-eslint/no-var-requires": 0,
     "no-use-before-define": "off",
     "react/jsx-filename-extension": [

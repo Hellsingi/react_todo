@@ -10,7 +10,9 @@ import EditIcon from '@material-ui/icons/Edit';
 import TextField from '@material-ui/core/TextField';
 import { Todo } from '../types/todo';
 
-const TodoList = ({ todos, changeEditMode, deleteTodo, editTodo }: {
+const TodoList = ({
+  todos, changeEditMode, deleteTodo, editTodo,
+}: {
   todos: Todo[],
   changeEditMode: (id: string) => void,
   deleteTodo: (id: string) => void,
@@ -36,7 +38,6 @@ const TodoList = ({ todos, changeEditMode, deleteTodo, editTodo }: {
                   variant="outlined"
                   placeholder="Add task"
                   margin="normal"
-                  // onChange={onChange}
                   defaultValue={todo.text}
                   inputRef={textFieldRef}
                 />

@@ -1,6 +1,8 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react';
 import { nanoid } from 'nanoid';
-import { setLocalStorage } from '../utils/localStoge';
+import { setLocalStorage } from '../utils/localStorage';
 import { Todo } from '../types/todo';
 import { sortByTime } from '../utils/sortTodo';
 
@@ -25,7 +27,6 @@ export default (initialValue: Todo[]) => {
       const editsTodo = [...todos].map((todo) => {
         if (todo.id === id) {
           todo.editable = !todo.editable;
-          // todo.editable = true;
         }
         return todo;
       });
@@ -43,6 +44,5 @@ export default (initialValue: Todo[]) => {
       });
       setTodos(sortByTime(editsTodo));
     },
-
-  }
+  };
 };
