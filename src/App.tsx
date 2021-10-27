@@ -2,10 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Typography } from '@material-ui/core';
 import TodoForm from './components/TodoForm';
-import useTodoState from './components/useTodoState';
+import useTodoState from './hooks/useTodoState';
 import TodoList from './components/TodoList';
 import { getLocalStorage } from './utils/localStorage';
-import './styles/main.css';
+import './App.css';
 
 const initialStorage = getLocalStorage();
 

@@ -1,8 +1,8 @@
-import dld from '../src/components/useTodoState';
+import todosState from '../src/hooks/useTodoState';
 
 describe('My Test Suite', () => {
   it('My Test Case', () => {
-    console.log('SSN:', dld);
+    console.log('todosState:', todosState);
     expect(true).toEqual(true);
   });
 });

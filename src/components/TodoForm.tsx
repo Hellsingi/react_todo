@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React from 'react';
 import TextField from '@material-ui/core/TextField';
-import useInputState from './useInputState';
+import useInputState from '../hooks/useInputState';
 
 const TodoForm = ({ saveTodo }: { saveTodo: (todoText: string) => void}) => {
   const { value, reset, onChange } = useInputState();
