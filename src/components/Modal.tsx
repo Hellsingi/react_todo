@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable no-unused-vars */
 import React, { ReactChild, useState } from 'react';
 import Box from '@mui/material/Box';
@@ -19,13 +18,13 @@ const style = {
   border: '2px solid #000',
   boxShadow: 24,
   p: 4,
-};
+} as const;
 
 export default function ModalComponent({
   children, onClick, submitForm, todo,
 }: {
   children: ReactChild,
-  onClick: any,
+  onClick: () => void,
   submitForm: (id: string, event?: React.ChangeEvent<HTMLInputElement>) => void,
   todo: Todo
 }) {
