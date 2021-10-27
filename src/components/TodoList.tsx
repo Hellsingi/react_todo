@@ -6,9 +6,9 @@ import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import ListItemText from '@material-ui/core/ListItemText';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
-import EditIcon from '@material-ui/icons/Edit';
 import TextField from '@material-ui/core/TextField';
 import { Todo } from '../types/todo';
+import ModalComponent from './Modal';
 
 const TodoList = ({
   todos, changeEditMode, deleteTodo, editTodo,
@@ -20,19 +20,29 @@ const TodoList = ({
 }) => {
   const textFieldRef = useRef<HTMLInputElement>();
 
+  const submitForm = (
+    id: string,
+    event?: React.FormEvent<HTMLFormElement> | React.ChangeEvent<HTMLInputElement>,
+  ) => {
+    event?.preventDefault();
+    editTodo(id, textFieldRef.current.value);
+  };
+
   return (
     <List>
       {todos.map((todo) => (
         <div key={todo.id}>
-
           <ListItem dense button>
             <ListItemText primary={todo.text} />
-            {todo.editable && (
-              <form
-                onSubmit={(event) => {
-                  event.preventDefault();
-                  editTodo(todo.id, textFieldRef.current.value);
+            <form
+              onSubmit={(e) => submitForm(todo.id, e)}
+            >
+              <ModalComponent
+                onClick={() => {
+                  changeEditMode(todo.id);
                 }}
+                submitForm={submitForm}
+                todo={todo}
               >
                 <TextField
                   variant="outlined"
@@ -41,17 +51,9 @@ const TodoList = ({
                   defaultValue={todo.text}
                   inputRef={textFieldRef}
                 />
-              </form>
-            )}
+              </ModalComponent>
+            </form>
             <ListItemSecondaryAction>
-              <IconButton
-                aria-label="Edit"
-                onClick={() => {
-                  changeEditMode(todo.id);
-                }}
-              >
-                <EditIcon />
-              </IconButton>
               <IconButton
                 aria-label="Delete"
                 onClick={() => {
