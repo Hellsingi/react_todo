@@ -2,10 +2,7 @@
 import React, { useRef } from 'react';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
-import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import ListItemText from '@material-ui/core/ListItemText';
-import IconButton from '@material-ui/core/IconButton';
-import DeleteIcon from '@material-ui/icons/Delete';
 import TextField from '@material-ui/core/TextField';
 import { Todo } from '../types/todo';
 import ModalComponent from './Modal';
@@ -43,8 +40,11 @@ const TodoList = ({
                 }}
                 submitForm={submitForm}
                 todo={todo}
+                deleteTodo={deleteTodo}
               >
                 <TextField
+                  fullWidth
+                  multiline
                   variant="outlined"
                   placeholder="Edit task"
                   margin="normal"
@@ -53,16 +53,6 @@ const TodoList = ({
                 />
               </ModalComponent>
             </form>
-            <ListItemSecondaryAction>
-              <IconButton
-                aria-label="Delete"
-                onClick={() => {
-                  deleteTodo(todo.id);
-                }}
-              >
-                <DeleteIcon />
-              </IconButton>
-            </ListItemSecondaryAction>
           </ListItem>
         </div>
       ))}

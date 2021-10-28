@@ -6,6 +6,8 @@ import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import EditIcon from '@material-ui/icons/Edit';
 import { IconButton } from '@material-ui/core';
+import DeleteIcon from '@material-ui/icons/Delete';
+import SaveIcon from '@mui/icons-material/Save';
 import { Todo } from '../types/todo';
 
 const style = {
@@ -18,18 +20,28 @@ const style = {
   border: '2px solid #000',
   boxShadow: 24,
   p: 4,
+  '& button': { m: 1, minWidth: 100 },
+  '& button:first-of-type': { ml: 0 },
 } as const;
 
 export default function ModalComponent({
-  children, onClick, submitForm, todo,
+  children,
+  onClick,
+  submitForm,
+  todo,
+  deleteTodo,
 }: {
-  children: ReactChild,
-  onClick: () => void,
-  submitForm: (id: string, event?: React.ChangeEvent<HTMLInputElement>) => void,
-  todo: Todo
+  children: ReactChild;
+  onClick: () => void;
+  submitForm: (id: string, event?: React.ChangeEvent<HTMLInputElement>) => void;
+  todo: Todo;
+  deleteTodo: (id: string) => void;
 }) {
   const [open, setOpen] = useState(false);
-  const handleOpen = () => { setOpen(true); onClick(); };
+  const handleOpen = () => {
+    setOpen(true);
+    onClick();
+  };
   const handleClose = () => setOpen(false);
 
   const handleEnterKey = (e: React.KeyboardEvent) => {
@@ -44,6 +56,14 @@ export default function ModalComponent({
       <IconButton onClick={handleOpen} aria-label="Edit">
         <EditIcon />
       </IconButton>
+      <IconButton
+        aria-label="Delete"
+        onClick={() => {
+          deleteTodo(todo.id);
+        }}
+      >
+        <DeleteIcon />
+      </IconButton>
       <Modal
         open={open}
         onClose={handleClose}
@@ -51,14 +71,36 @@ export default function ModalComponent({
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+          <Typography
+            id="modal-modal-description"
+            sx={{ mt: 2 }}
+            style={{ textAlign: 'center' }}
+          >
             Edit Task:
           </Typography>
           <Typography id="modal-modal-title" variant="h6" component="h2">
             {children}
           </Typography>
-          <Button onClick={() => { submitForm(todo.id); handleClose(); }}>save</Button>
-          <Button onClick={() => { handleClose(); }}>cancel</Button>
+          <Button
+            startIcon={<SaveIcon />}
+            variant="outlined"
+            size="medium"
+            onClick={() => {
+              submitForm(todo.id);
+              handleClose();
+            }}
+          >
+            save
+          </Button>
+          <Button
+            variant="contained"
+            size="medium"
+            onClick={() => {
+              handleClose();
+            }}
+          >
+            cancel
+          </Button>
         </Box>
       </Modal>
     </div>
